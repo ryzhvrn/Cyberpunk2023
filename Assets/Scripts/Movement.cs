@@ -32,6 +32,7 @@ public class Movement : MonoBehaviour
     private bool _canWallSlide;
     private bool _isWallSliding;
     private int _facingDirection = 1;
+    private float _slidingSpeed = 0.1f;
 
     private void Start()
     {
@@ -92,12 +93,13 @@ public class Movement : MonoBehaviour
 
     private void WallSlide()
     {
-        _isWallDetected = Physics2D.Raycast(_wallCheck.position, Vector2.right * transform.localScale.x, _wallCheckDistance, _whatIsGround);
+        _isWallDetected = Physics2D.Raycast(_wallCheck.position, Vector2.right * transform.localScale.x,
+            _wallCheckDistance, _whatIsGround);
 
         if (_isWallDetected)
         {
             _isWallSliding = true;
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.1f);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * _slidingSpeed);
         }
         else
         {
