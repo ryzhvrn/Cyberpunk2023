@@ -80,14 +80,19 @@ public class Movement : MonoBehaviour
         {
             if (_isGrounded)
             {
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
+                ApplyJumpForce();
             }
             else if (!_canDoubleJump)
             {
                 _canDoubleJump = true;
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
+                ApplyJumpForce();
             }
         }
+    }
+
+    private void ApplyJumpForce()
+    {
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
     }
 
 
